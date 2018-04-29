@@ -67,7 +67,8 @@ if ( isset($_GET['fecha']) || isset($_GET['confirmado']) ){
 			break;
 	}
 
-	header('Location: ?view=mostrar&mes='. $mes .'');
+	//header('Location: ?view=mostrar&mes='. $mes .'');
+	header('Location: http://www.ezequielest.com/multimediaV1/');
 
 }else{
 	header('Location: ?view=error');
