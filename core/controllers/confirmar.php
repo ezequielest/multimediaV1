@@ -1,8 +1,5 @@
 <?php 
 
-//fecha
-echo $_GET['mes'];
-
 $mes = isset($_GET['mes']) ? $_GET['mes'] : date('n');
 
 if ( isset($_GET['fecha']) || isset($_GET['confirmado']) ){
