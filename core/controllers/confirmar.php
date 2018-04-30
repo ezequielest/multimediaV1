@@ -18,7 +18,6 @@ if ( isset($_GET['fecha']) || isset($_GET['confirmado']) ){
 
 	switch ($_GET['confirmado']) {
 		case 0:
-
 			/*PASO A SIN CONFIRMAR*/
 			$consulta = $conexion->prepare("UPDATE eventos_calendario
 											SET confirmado = 0
@@ -67,8 +66,8 @@ if ( isset($_GET['fecha']) || isset($_GET['confirmado']) ){
 			break;
 	}
 
-	//header('Location: ?view=mostrar&mes='. $mes .'');
-	header('Location: http://www.ezequielest.com/multimediaV1/');
+	header('Location: ?view=mostrar');
+
 
 }else{
 	header('Location: ?view=error');
