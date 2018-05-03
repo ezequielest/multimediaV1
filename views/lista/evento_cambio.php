@@ -20,7 +20,7 @@
 	      <div class="modal-body">
 			<input type="hidden" name="view" value="confirmar">
 	      	<?php echo $evento['nombre'] ?> x   
-	      	<select name="miembro" id="miembro">
+	      	<select name="reemplazo" id="reemplazo">
 	      	<?php foreach ($miembros as $miembro => $valor): ?>
 	      		<?php if ($evento['nombre'] != $valor): ?>
 	      			<option value="<?php echo $miembro ?>"><?php echo $valor ?></option>
@@ -29,7 +29,9 @@
 	        </select>
 	        <input id="confirmado" name="confirmado" type="hidden" value="3">
 	        <input id="fecha" name="fecha" type="hidden" value="<?php echo $evento['fecha'] ?>">
-	        <input type="hidden" id="mes" name="mes" value="<?php echo $mes ?>">
+					<input id="miembro" name="miembro" type="hidden" value="<?php echo $evento['nombre'] ?>">
+	        
+					<input type="hidden" id="mes" name="mes" value="<?php echo $mes ?>">
 
 	      </div>
 	      <div class="modal-footer">

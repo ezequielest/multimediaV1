@@ -37,13 +37,22 @@ $conexion = new Conexion ($config_db);
 $conexion->conectarse();
 $conexion = $conexion->getConexion();
 
-$consulta = $conexion->prepare('SELECT 
+/*$consulta = $conexion->prepare('SELECT 
 								mi.nombre,
 								ev_ca.reemplazo,
 								ev_ca.fecha,
 								ev_ca.confirmado 
 								FROM eventos_calendario ev_ca
-								JOIN miembros mi ON ev_ca.id_miembro = mi.id');
+								JOIN miembros mi ON ev_ca.id_miembro = mi.id');*/
+
+$consulta = $conexion->prepare('SELECT 
+								mi.nombre, 
+								ac.fecha,
+								am.reemplazo,
+								am.confirmado
+								FROM actividades_miembros am 
+								JOIN miembros mi ON am.miembros_id = mi.id
+								JOIN actividades ac ON ac.id = am.actividades_id');
 
 $consulta->execute();
 

@@ -29,6 +29,7 @@
 	        el día: 
 	        <input id="confirmado" name="confirmado" type="hidden" value="3">
 	        <input id="fecha" name="fecha" type="hidden" value="<?php echo $evento['fecha'] ?>">
+					<input id="nombre" name="nombre" type="hidden" value="<?php echo $evento['nombre'] ?>">
 	        <input type="hidden" id="mes" name="mes" value="<?php echo $mes ?>">
 
 	      </div>

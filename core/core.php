@@ -10,7 +10,7 @@
 	
 $config_db = array(
 	'host' => 'mysql.iddcielosabiertos.com',
-	'dbname' => 'ez_multimedia',
+	'dbname' => 'multimedia_app',
 	'user' => 'dbezequielest',
 	'pass' => '4739eerr'
 	);

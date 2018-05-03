@@ -12,60 +12,47 @@ if ( isset($_GET['fecha']) || isset($_GET['confirmado']) ){
 		echo 'ERROR: ' . $e->getMessage();
 	}
 
+	$reemplazo = "";
 
-	switch ($_GET['confirmado']) {
-		case 0:
-			/*PASO A SIN CONFIRMAR*/
-			$consulta = $conexion->prepare("UPDATE eventos_calendario
-											SET confirmado = 0
-											WHERE fecha = :fecha AND id_miembro = (
-												SELECT id FROM miembros WHERE nombre = :miembro
-											)");
-
-			$consulta->execute(
-				array(
-					':fecha'=>$_GET['fecha'],
-					':miembro'=>$_GET['miembro']
-				)
-			);
-		
-			break;
-	
-		case 1:
-			/*PASO A CONFIRMADO*/
-			$consulta = $conexion->prepare('UPDATE eventos_calendario
-											SET confirmado = 1
-											WHERE fecha = :fecha ');
-			$consulta->execute(array(
-				':fecha'=>$_GET['fecha']
-			));
-			break;
-
-		case 2:
-			/*PASO A CAMBIO*/
-			$consulta = $conexion->prepare('UPDATE eventos_calendario
-											SET confirmado = 2
-											WHERE fecha = :fecha ');
-			$consulta->execute(array(
-				':fecha'=>$_GET['fecha']
-			));
-			break;
-
-		case 3:
-			/*REEPLAZO*/
-			$consulta = $conexion->prepare('UPDATE eventos_calendario
-											SET confirmado = 3, reemplazo = :reemplazo
-											WHERE fecha = :fecha ');
-			$consulta->execute(array(
-				':fecha'=>$_GET['fecha'],
-				':reemplazo'=>$_GET['miembro']
-			));
-			break;
+	if (!isset($_GET['reemplazo'])){
+		$array = array(
+			':fecha'=>$_GET['fecha'],
+			':miembro'=>$_GET['miembro'],
+			':estado' =>$_GET['confirmado']
+		);
+	}else{
+		$reemplazo = ", reemplazo = :reemplazo";
+		$array = array(
+			':fecha'=>$_GET['fecha'],
+			':miembro'=>$_GET['miembro'],
+			':estado' =>$_GET['confirmado'],
+			':reemplazo' => $_GET['reemplazo']
+		);
 	}
 
+	$consulta = $conexion->prepare("UPDATE actividades_miembros
+									SET confirmado = :estado " . $reemplazo . "
+									WHERE actividades_id = (
+											SELECT 
+												id 
+											FROM (
+												SELECT
+												ac.id 
+												FROM
+												actividades ac
+												JOIN actividades_miembros am ON ac.id = am.actividades_id
+												JOIN miembros mi ON mi.id = am.miembros_id
+												WHERE ac.fecha = :fecha AND mi.nombre = :miembro
+											) AS t
+										)
+									");
+
+
+
+	$consulta->execute($array);
+
 	header('Location: ?view=mostrar');
-
-
+	
 }else{
 	header('Location: ?view=error');
 }
