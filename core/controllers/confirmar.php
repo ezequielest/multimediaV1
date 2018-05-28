@@ -51,7 +51,7 @@ if ( isset($_GET['fecha']) || isset($_GET['confirmado']) ){
 
 	$consulta->execute($array);
 
-	header('Location: ?view=mostrar');
+	header('Location: ?view=mostrar&mes='.$mes);
 	
 }else{
 	header('Location: ?view=error');
