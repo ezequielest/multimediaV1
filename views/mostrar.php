@@ -273,6 +273,10 @@
 		</li>
 	</ul>
 
+	<?php if ($cantidad_eventos_mes == 0): ?>
+		<span class="label label-info">NO HAY EVENTOS CARGADOS PARA ESTE MES</span>
+	<?php endif ?>
+
 	<?php $num_dom = 0; $num_int = 0; ?>
 	<?php foreach ($calendario as $dia): ?>
 	<ul class="list-group">
@@ -326,7 +330,7 @@
 
 <section id="respuesta"></section>
 
-<section id="eventos" class="container">
+<!--<section id="eventos" class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="alert alert-dismissible alert-info">
@@ -334,7 +338,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section>-->
 
 <div id="referencia" class="row">
 	<div class="col-md-12"><h4>Referencias de colores</h4></div>

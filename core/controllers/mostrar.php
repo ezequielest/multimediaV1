@@ -22,8 +22,18 @@ $consulta->execute();
 $record_eventos = $consulta->fetchAll();
 
 $cantidad_eventos=0;
+$cantidad_eventos_mes=0;
 foreach ($record_eventos as $evento) {
 	$cantidad_eventos++;
+
+	$fecha = new DateTime($evento['fecha']);
+	$fecha = $fecha->getTimestamp();
+
+	$mesDeFecha = date("n", $fecha);
+
+	if ($mesDeFecha == $mes ){
+		$cantidad_eventos_mes++;
+	} 
 }
 
 $semana = 1;
