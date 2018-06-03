@@ -36,6 +36,11 @@ foreach ($record_eventos as $evento) {
 	} 
 }
 
+//OBTENGO MIEMBROS
+$consulta = $conexion->prepare('SELECT * FROM miembros');
+$consulta->execute();
+$miembros = $consulta->fetchAll();
+
 $semana = 1;
 
 for ($i=1; $i <= $cant_dias_mes ; $i++) { 

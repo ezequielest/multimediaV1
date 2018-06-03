@@ -21,9 +21,9 @@
 			<input type="hidden" name="view" value="confirmar">
 	      	<?php echo $evento['nombre'] ?> x   
 	      	<select name="reemplazo" id="reemplazo">
-	      	<?php foreach ($miembros as $miembro => $valor): ?>
+	      	<?php foreach ($miembros as $key => $miembro): ?>
 	      		<?php if ($evento['nombre'] != $valor): ?>
-	      			<option value="<?php echo $miembro ?>"><?php echo $valor ?></option>
+	      			<option value="<?php echo $key ?>"><?php echo $miembro['nombre'] ?></option>
 	      		<?php endif ?>
 	      	<?php endforeach ?>
 	        </select>
